@@ -11,16 +11,16 @@ import { Card, CardContent } from '@/components/ui/card';
 
 // Define section colors
 const sectionColors = {
-    hero: { bg: 'bg-white', text: 'text-gray-800', hover: 'hover:text-primary' },
-    features: { bg: 'bg-white/95', text: 'text-gray-800', hover: 'hover:text-primary' },
-    'feature-ocr': { bg: 'bg-white', text: 'text-gray-800', hover: 'hover:text-primary' },
-    'feature-verification': { bg: 'bg-purple-50', text: 'text-purple-900', hover: 'hover:text-purple-700' },
-    'feature-dosage': { bg: 'bg-white', text: 'text-gray-800', hover: 'hover:text-primary' },
-    'feature-alerts': { bg: 'bg-red-50', text: 'text-red-900', hover: 'hover:text-red-700' },
-    'feature-reminders': { bg: 'bg-white', text: 'text-gray-800', hover: 'hover:text-primary' },
-    testimonials: { bg: 'bg-blue-50', text: 'text-blue-900', hover: 'hover:text-blue-700' },
-    faq: { bg: 'bg-white', text: 'text-gray-800', hover: 'hover:text-primary' },
-    cta: { bg: 'bg-gradient-to-r from-primary to-secondary', text: 'text-white', hover: 'hover:text-white/80' }
+    hero: { bg: 'bg-white', text: 'text-gray-800', hover: 'hover:text-primary', underline: 'bg-primary' },
+    features: { bg: 'bg-white/95', text: 'text-gray-800', hover: 'hover:text-primary', underline: 'bg-primary' },
+    'feature-ocr': { bg: 'bg-purple-50', text: 'text-purple-900', hover: 'hover:text-purple-700', underline: 'bg-purple-700' },
+    'feature-dosage': { bg: 'bg-white', text: 'text-foreground', hover: 'hover:text-primary', underline: 'bg-primary' },
+    'feature-verification': { bg: 'bg-green-50', text: 'text-green-900', hover: 'hover:text-green-700', underline: 'bg-green-700' },
+    'feature-reminders': { bg: 'bg-white', text: 'text-foreground', hover: 'hover:text-primary', underline: 'bg-primary' },
+    'feature-alerts': { bg: 'bg-red-50', text: 'text-red-900', hover: 'hover:text-red-700', underline: 'bg-red-700' },
+    testimonials: { bg: 'bg-white', text: 'text-foreground', hover: 'hover:text-primary', underline: 'bg-primary' },
+    faq: { bg: 'bg-white', text: 'text-foreground', hover: 'hover:text-primary', underline: 'bg-primary' },
+    cta: { bg: 'bg-gradient-to-r from-primary to-secondary', text: 'text-white', hover: 'hover:text-white/80', underline: 'bg-white' }
 };
 
 const Navbar = () => {
@@ -118,7 +118,7 @@ const Navbar = () => {
                         >
                             <div className="inline-flex items-center justify-center">
                                 <img src="/logo-transparent.png" alt="RxScan Logo" className='h-14' />
-                                <span className={`text-primary text-3xl font-heading ml-2 ${isDarkBg ? 'text-white' : ''
+                                <span className={`text-primary text-3xl font-body font-semibold ml-2 ${isDarkBg ? 'text-white' : ''
                                     }`}>RxScan</span>
                             </div>
                         </motion.div>
@@ -138,8 +138,7 @@ const Navbar = () => {
                                 >
                                     {link.name}
                                     <motion.span
-                                        className={`absolute -bottom-1 left-0 w-0 h-0.5 ${isDarkBg ? 'bg-white' : 'bg-gradient-to-r from-primary to-secondary'
-                                            } group-hover:w-full transition-all duration-300`}
+                                        className={`absolute -bottom-1 left-0 w-0 h-0.5 ${currentColors.underline} group-hover:w-full transition-all duration-300`}
                                     />
                                 </motion.button>
                             ))}
@@ -155,8 +154,8 @@ const Navbar = () => {
                             <Button
                                 variant={isDarkBg ? "outline" : "ghost"}
                                 className={`font-medium ${isDarkBg
-                                        ? 'text-white border-white hover:bg-white/20'
-                                        : `${currentColors.text} ${currentColors.hover}`
+                                    ? 'text-white border-white hover:bg-white/20'
+                                    : `${currentColors.text} ${currentColors.hover}`
                                     }`}
                             >
                                 Sign In
@@ -209,8 +208,8 @@ const Navbar = () => {
                             <Button
                                 variant="outline"
                                 className={`w-full font-medium ${isDarkBg
-                                        ? 'text-white border-white hover:bg-white/20'
-                                        : ''
+                                    ? 'text-white border-white hover:bg-white/20'
+                                    : ''
                                     }`}
                             >
                                 Sign In
@@ -311,7 +310,7 @@ const FAQItem = ({ question, answer, delay = 0 }: { question: string; answer: st
 
 const TestimonialCard = ({ name, role, content, rating, image }: { name: string; role: string; content: string; rating: number; image: string }) => {
     return (
-        <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 min-w-[350px] mx-4">
+        <div className="outline-1 outline-black/50 bg-white rounded-2xl p-8 shadow-sm border border-gray-100 min-w-[350px] mx-4">
             <div className="flex items-center gap-1 mb-4">
                 {[...Array(rating)].map((_, i) => (
                     <FiStar key={i} className="text-yellow-400 fill-yellow-400" />
@@ -409,7 +408,7 @@ export default function RxScanLanding() {
             <motion.section
                 id="hero"
                 style={{ opacity, scale }}
-                className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden"
+                className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden mt-[-50px]"
             >
                 <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
                     {/* Left side - Device Mockup */}
@@ -539,13 +538,13 @@ export default function RxScanLanding() {
 
             {/* Feature 1: OCR + NLP */}
             <AnimatedSection>
-                <section id="feature-ocr" className="py-35 px-4">
+                <section id="feature-ocr" className="py-35 px-4 bg-purple-50">
                     <div className="max-w-6xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
-                                <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-6">
-                                    <MdOutlineQrCodeScanner className="text-blue-600 mr-2" />
-                                    <span className="text-blue-600 font-semibold">Smart Scanning</span>
+                                <div className="inline-flex items-center px-4 py-2 bg-purple-100 rounded-full mb-6">
+                                    <MdOutlineQrCodeScanner className="text-purple-600 mr-2" />
+                                    <span className="text-purple-600 font-semibold">Smart Scanning</span>
                                 </div>
                                 <h2 className="text-4xl font-heading mb-6 text-gray-800">
                                     Prescription Parsing with AI
@@ -581,13 +580,58 @@ export default function RxScanLanding() {
                 </section>
             </AnimatedSection>
 
-            {/* Feature 2: Medicine Verification */}
+            {/* Feature 2: Dosage Assistance */}
             <AnimatedSection>
-                <section id="feature-verification" className="py-30 px-4 bg-gradient-to-br from-purple-50 to-blue-50">
+                <section id="feature-dosage" className="py-40 px-4">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="grid md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <div className="inline-flex items-center px-4 py-2 bg-primary/15 rounded-full mb-6">
+                                    <RiMedicineBottleLine className="text-primary mr-2" />
+                                    <span className="text-primary font-semibold">Smart Guidance</span>
+                                </div>
+                                <h2 className="text-4xl font-heading mb-6 text-gray-800">
+                                    Dosage & Usage Guidelines
+                                </h2>
+                                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                                    Get clear, easy-to-understand instructions for each medication including standard
+                                    dosage ranges, timing, and whether to take before or after meals.
+                                </p>
+                                <ul className="space-y-4">
+                                    <li className="flex items-start">
+                                        <FiCheckCircle className="text-primary mt-1 mr-3 flex-shrink-0" />
+                                        <span className="text-gray-700">Standard dosage ranges for safe usage</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <FiCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                                        <span className="text-gray-700">Detailed usage instructions and timing</span>
+                                    </li>
+                                    <li className="flex items-start">
+                                        <FiCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                                        <span className="text-gray-700">Warnings for abnormal dosage levels</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="relative">
+                                <div className="absolute -inset-4 bg-gradient-to-r from-green-200 to-blue-200 rounded-3xl blur-2xl opacity-30" />
+                                <img
+                                    src="/landing-page/2.png"
+                                    alt="Dosage guidelines"
+                                    className="relative w-full"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </AnimatedSection>
+
+            {/* Feature 3: Medicine Verification */}
+            <AnimatedSection>
+                <section id="feature-verification" className="py-30 px-4 bg-green-50">
                     <div className="max-w-6xl mx-auto">
                         <div id="how-it-works" className="grid md:grid-cols-2 gap-12 items-center">
                             <div className="order-2 md:order-1 relative">
-                                <div className="absolute -inset-4 bg-gradient-to-r from-purple-200 to-blue-200 rounded-3xl blur-2xl opacity-30" />
+                                <div className="absolute -inset-4 bg-gradient-to-r from-green-200 to-blue-200 rounded-3xl blur-2xl opacity-30" />
                                 <img
                                     src="/landing-page/3.png"
                                     alt="Medicine verification"
@@ -595,9 +639,9 @@ export default function RxScanLanding() {
                                 />
                             </div>
                             <div className="order-1 md:order-2">
-                                <div className="inline-flex items-center px-4 py-2 bg-purple-100 rounded-full mb-6">
-                                    <MdOutlineVerifiedUser className="text-purple-600 mr-2" />
-                                    <span className="text-purple-600 font-semibold">Verified & Safe</span>
+                                <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full mb-6">
+                                    <MdOutlineVerifiedUser className="text-green-600 mr-2" />
+                                    <span className="text-green-600 font-semibold">Verified & Safe</span>
                                 </div>
                                 <h2 className="text-4xl font-heading mb-6 text-gray-800">
                                     Real-Time Medicine Verification
@@ -626,43 +670,43 @@ export default function RxScanLanding() {
                 </section>
             </AnimatedSection>
 
-            {/* Feature 3: Dosage Assistance */}
+            {/* Feature 4: Reminders & Tracking */}
             <AnimatedSection>
-                <section id="feature-dosage" className="py-40 px-4">
+                <section id="feature-reminders" className="py-20 px-4">
                     <div className="max-w-6xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-12 items-center">
                             <div>
-                                <div className="inline-flex items-center px-4 py-2 bg-green-100 rounded-full mb-6">
-                                    <RiMedicineBottleLine className="text-green-600 mr-2" />
-                                    <span className="text-green-600 font-semibold">Smart Guidance</span>
+                                <div className="inline-flex items-center px-4 py-2 bg-primary/15 rounded-full mb-6">
+                                    <IoMdNotificationsOutline className="text-primary mr-2 text-xl" />
+                                    <span className="text-primary font-semibold">Never Miss a Dose</span>
                                 </div>
                                 <h2 className="text-4xl font-heading mb-6 text-gray-800">
-                                    Dosage & Usage Guidelines
+                                    Smart Reminders & Tracking
                                 </h2>
                                 <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                                    Get clear, easy-to-understand instructions for each medication including standard
-                                    dosage ranges, timing, and whether to take before or after meals.
+                                    Set intelligent medication reminders based on your prescription schedule.
+                                    Track adherence and get notified about missed doses to stay on top of your health.
                                 </p>
                                 <ul className="space-y-4">
                                     <li className="flex items-start">
                                         <FiCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                                        <span className="text-gray-700">Standard dosage ranges for safe usage</span>
+                                        <span className="text-gray-700">Customized reminders for each medication</span>
                                     </li>
                                     <li className="flex items-start">
                                         <FiCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                                        <span className="text-gray-700">Detailed usage instructions and timing</span>
+                                        <span className="text-gray-700">Adherence tracking and progress insights</span>
                                     </li>
                                     <li className="flex items-start">
                                         <FiCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                                        <span className="text-gray-700">Warnings for abnormal dosage levels</span>
+                                        <span className="text-gray-700">Before/after meal timing notifications</span>
                                     </li>
                                 </ul>
                             </div>
                             <div className="relative">
-                                <div className="absolute -inset-4 bg-gradient-to-r from-green-200 to-blue-200 rounded-3xl blur-2xl opacity-30" />
+                                <div className="absolute -inset-4 bg-gradient-to-r from-indigo-200 to-purple-200 rounded-3xl blur-2xl opacity-30" />
                                 <img
-                                    src="/landing-page/2.png"
-                                    alt="Dosage guidelines"
+                                    src="/landing-page/3.png"
+                                    alt="Medication reminders"
                                     className="relative w-full"
                                 />
                             </div>
@@ -671,7 +715,8 @@ export default function RxScanLanding() {
                 </section>
             </AnimatedSection>
 
-            {/* Feature 4: Interaction Alerts */}
+        
+            {/* Feature 5: Interaction Alerts */}
             <AnimatedSection>
                 <section id="feature-alerts" className="py-20 px-4 bg-gradient-to-br from-red-50 to-orange-50">
                     <div className="max-w-6xl mx-auto">
@@ -716,54 +761,11 @@ export default function RxScanLanding() {
                 </section>
             </AnimatedSection>
 
-            {/* Feature 5: Reminders & Tracking */}
-            <AnimatedSection>
-                <section id="feature-reminders" className="py-20 px-4">
-                    <div className="max-w-6xl mx-auto">
-                        <div className="grid md:grid-cols-2 gap-12 items-center">
-                            <div>
-                                <div className="inline-flex items-center px-4 py-2 bg-indigo-100 rounded-full mb-6">
-                                    <IoMdNotificationsOutline className="text-indigo-600 mr-2 text-xl" />
-                                    <span className="text-indigo-600 font-semibold">Never Miss a Dose</span>
-                                </div>
-                                <h2 className="text-4xl font-heading mb-6 text-gray-800">
-                                    Smart Reminders & Tracking
-                                </h2>
-                                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                                    Set intelligent medication reminders based on your prescription schedule.
-                                    Track adherence and get notified about missed doses to stay on top of your health.
-                                </p>
-                                <ul className="space-y-4">
-                                    <li className="flex items-start">
-                                        <FiCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                                        <span className="text-gray-700">Customized reminders for each medication</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <FiCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                                        <span className="text-gray-700">Adherence tracking and progress insights</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <FiCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                                        <span className="text-gray-700">Before/after meal timing notifications</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="relative">
-                                <div className="absolute -inset-4 bg-gradient-to-r from-indigo-200 to-purple-200 rounded-3xl blur-2xl opacity-30" />
-                                <img
-                                    src="/landing-page/3.png"
-                                    alt="Medication reminders"
-                                    className="relative w-full"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </AnimatedSection>
+           
 
             {/* Testimonials Section */}
             <AnimatedSection>
-                <section id="testimonials" className="py-25 px-4 bg-gradient-to-br from-blue-50 to-purple-50 overflow-hidden scroll-mt-20">
+                <section id="testimonials" className="py-25 px-4">
                     <div className="max-w-6xl mx-auto mb-16 text-center">
                         <h2 className="text-4xl md:text-5xl font-heading mb-6 text-gray-800">
                             Loved by Thousands of Users
@@ -828,6 +830,7 @@ export default function RxScanLanding() {
 
             {/* Call to Action Section */}
             <motion.section
+                id="cta"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
@@ -840,11 +843,11 @@ export default function RxScanLanding() {
                     <p className="text-xl mb-8 max-w-3xl mx-auto">
                         Download RxScan today and take control of your prescriptions with AI-powered accuracy and convenience.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button size="lg" className="bg-white text-primary font-heading text-lg px-8 py-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center text-foreground">
+                        <Button size="lg" variant={'outline'}>
                             Get Started Free
                         </Button>
-                        <Button size="lg" variant="outline" className="border-2 border-white text-white text-lg px-8 py-6 rounded-xl hover:bg-white/20">
+                        <Button size="lg" variant="outline">
                             Contact Sales
                         </Button>
                     </div>
