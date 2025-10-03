@@ -310,7 +310,7 @@ const FAQItem = ({ question, answer, delay = 0 }: { question: string; answer: st
 
 const TestimonialCard = ({ name, role, content, rating, image }: { name: string; role: string; content: string; rating: number; image: string }) => {
     return (
-        <div className="outline-1 outline-black/50 bg-white rounded-2xl p-8 shadow-sm border border-gray-100 min-w-[350px] mx-4">
+        <div className="outline-1 outline-black/70 bg-white rounded-2xl p-8 shadow-sm border border-gray-100 min-w-[350px] mx-4">
             <div className="flex items-center gap-1 mb-4">
                 {[...Array(rating)].map((_, i) => (
                     <FiStar key={i} className="text-yellow-400 fill-yellow-400" />
@@ -715,7 +715,7 @@ export default function RxScanLanding() {
                 </section>
             </AnimatedSection>
 
-        
+
             {/* Feature 5: Interaction Alerts */}
             <AnimatedSection>
                 <section id="feature-alerts" className="py-20 px-4 bg-gradient-to-br from-red-50 to-orange-50">
@@ -761,7 +761,7 @@ export default function RxScanLanding() {
                 </section>
             </AnimatedSection>
 
-           
+
 
             {/* Testimonials Section */}
             <AnimatedSection>
@@ -791,7 +791,7 @@ export default function RxScanLanding() {
                             </p>
                         </div>
 
-                        <div className="bg-white rounded-2xl outline-1 outline-black/50 p-8 border border-gray-100">
+                        <div className="bg-white rounded-2xl outline-1 outline-black/70 p-8 border border-gray-100">
                             <FAQItem
                                 question="How accurate is the prescription scanning?"
                                 answer="RxScan uses advanced AI-powered OCR and medical NLP technology to achieve over 95% accuracy in reading handwritten prescriptions. Our system is trained on millions of prescriptions and continuously improves with usage."

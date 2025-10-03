@@ -2,26 +2,31 @@ import * as React from "react"
 import { Mail, Lock, User, Search, Phone } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { on } from "events";
 
 interface InputProps extends React.ComponentProps<"input"> {
     label?: string;
     icon?: React.ReactNode;
+    focusHandler?: (e: React.FocusEvent<HTMLInputElement>) => void;
+    blurHandler?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ className, type, label, icon, ...props }, ref) => {
+    ({ className, type, label, icon, focusHandler, blurHandler, ...props }, ref) => {
         const [isFocused, setIsFocused] = React.useState(false);
         const [hasValue, setHasValue] = React.useState(false);
 
         const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
             setIsFocused(true);
             props.onFocus?.(e);
+            focusHandler?.(e);
         };
 
         const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
             setIsFocused(false);
             setHasValue(e.target.value.length > 0);
             props.onBlur?.(e);
+            blurHandler?.(e);
         };
 
         const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,11 +66,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     type={type}
                     data-slot="input"
                     className={cn(
-                        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-black/50 h-12 w-full min-w-0 rounded-md border-[2px] bg-transparent px-3 pt-1 pb-1 text-sm md:text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+                        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-black/70 h-12 w-full min-w-0 rounded-md border-[2px] bg-transparent px-3 pt-1 pb-1 text-sm md:text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
                         "focus-visible:border-primary",
                         "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
                         hasIcon && "pl-10",
-                        isLabelFloating ? "border-primary": "",
+                        isLabelFloating ? "border-primary" : "",
                         className
                     )}
                     onFocus={handleFocus}
