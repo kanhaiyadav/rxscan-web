@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Utensils, Search, Plus, X, Info, CheckCircle, ShieldCheck, Loader2 } from 'lucide-react';
 import { SearchableSelect } from '@/components/ui/SearchableSelect';
+import { Textarea } from '@/components/ui/textarea';
 
 const DIETARY_RESTRICTION_OPTIONS = [
     // Beverages & Stimulants
@@ -449,7 +450,7 @@ export default function Step4() {
             {/* Selected Restrictions */}
             <div className="my-4">
                 <h3 className="text-gray-900 font-semibold mb-1">Your Restrictions</h3>
-                <div className="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm min-h-32">
+                <div className="bg-white rounded-2xl p-4 border-[2px] border-black/70 min-h-32">
                     {selectedRestrictions.length > 0 ? (
                         <div className="flex flex-wrap gap-2.5">
                             {selectedRestrictions.map((restriction, index) => (
@@ -485,12 +486,12 @@ export default function Step4() {
                 <p className="text-gray-600 text-sm mb-1 leading-relaxed">
                     Include any other relevant health information (pregnancy, breastfeeding, recent surgeries, etc.)
                 </p>
-                <textarea
+                <Textarea
                     value={additionalNotes}
                     onChange={(e) => setAdditionalNotes(e.target.value)}
                     placeholder="e.g., Pregnant (3rd trimester), Recently had surgery, Taking supplements..."
                     rows={4}
-                    className="w-full bg-white rounded-2xl border-2 border-gray-200 px-5 py-4 text-gray-900 font-medium placeholder:text-gray-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 transition-all outline-none shadow-sm resize-none"
+                    className="w-full"
                 />
             </div>
 
